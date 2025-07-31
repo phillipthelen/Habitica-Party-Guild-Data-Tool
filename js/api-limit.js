@@ -308,6 +308,7 @@ function makeAjaxCall(call, userId, apiToken, rl){
 //			headers: {'Authorization': 'Basic ' + btoa('admin:PASSWORD')},
 			cache: false,
 			beforeSend: function(xhr){
+					xhr.setRequestHeader('x-client', userId + '-party-guild-tool');
 					xhr.setRequestHeader('x-api-user', userId);
 					xhr.setRequestHeader('x-api-key',  apiToken);
 				},
