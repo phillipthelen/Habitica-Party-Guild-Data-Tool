@@ -28,7 +28,7 @@ function getApiVersion() {
 	return '2.4'
 }
 	
-function makeAjaxCall(call, userId, apiToken, rl){
+function makeAjaxCall(call, userId, apiToken, clientId, rl){
 	//////////////////////////////////////////////////////////////////////
 	////   Global Constants                              /////////////////
 	//////////////////////////////////////////////////////////////////////
@@ -308,7 +308,7 @@ function makeAjaxCall(call, userId, apiToken, rl){
 //			headers: {'Authorization': 'Basic ' + btoa('admin:PASSWORD')},
 			cache: false,
 			beforeSend: function(xhr){
-					xhr.setRequestHeader('x-client', userId + '-party-guild-tool');
+					xhr.setRequestHeader('x-client', clientId);
 					xhr.setRequestHeader('x-api-user', userId);
 					xhr.setRequestHeader('x-api-key',  apiToken);
 				},

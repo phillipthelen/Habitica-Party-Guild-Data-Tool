@@ -1232,7 +1232,7 @@ function fetchGroupForUser() {
 	var call = []
 	call.push({requestType: 'GET', urlTo: serverUrl + serverPathGroup, newData: newData, fnSuccess: fetchGroupForUserSuccess, fnFailure: fetchFailure, statusText: 'Getting Joined Guilds/Party List'})
 	
-	makeAjaxCall(call, userId, apiToken, rlCurrent)
+	makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 	
 	function fetchFailure(data ,rl) {
         if (debug) console.log('debug fetchFailure start');
@@ -1292,7 +1292,7 @@ function fetchData() {
     // fetch the user's own content (guilds, parties):
 	call.push({requestType: 'GET', urlTo: serverUrl + serverPathUser, newData: '', fnSuccess: fetchUserSuccess, fnFailure: fetchFailure, statusText: 'Asking for User Data'})
 	call.push({requestType: 'GET', urlTo: serverUrl + serverPathContent, newData: '', fnSuccess: fetchContentSuccess, fnFailure: fetchFailure, statusText: 'Asking for Generic Content'})
-	makeAjaxCall(call, userId, apiToken, rlCurrent)
+	makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 	
 
 	function fetchFailure(data, rl) {
@@ -1352,7 +1352,7 @@ function fetchData() {
 
 		call = [] //clear list
 		call.push({requestType: 'GET', urlTo: serverUrl + serverPathGroup + '/' + groupId, newData: '', fnSuccess: fetchGuildSuccess, fnFailure: fetchFailure, statusText: 'Asking for Guild Data'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 		
 	}
 		
@@ -1375,7 +1375,7 @@ function fetchData() {
 	
 		call = [] //clear list
 		call.push({requestType: 'GET', urlTo: serverUrl + serverPathParty, newData: '', fnSuccess: fetchPartySuccess, fnFailure: fetchFailure, statusText: 'Asking for Party Data'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 		
 	}	
 	
@@ -1397,7 +1397,7 @@ function fetchData() {
 		
 		call = [] //clear list
 		call.push({requestType: 'GET', urlTo: serverUrl + serverPathChallengeGroup + '/' + actualGroupId, newData: '', fnSuccess: fetchChallengeGroupSuccess, fnFailure: fetchFailure, statusText: 'Asking for Challenge Data for Group'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 		
 	}	
 	
@@ -1433,7 +1433,7 @@ function fetchData() {
 			if (debugShowObject) console.log(completeUrl);	
 			call = []
 			call.push({requestType: 'GET', urlTo: completeUrl, newData: '', fnSuccess: fetchMemberListSuccess, fnFailure: fetchMemberListFailure, statusText: 'Asking for Member List (' + memberListToFetch.length + ' so far)'})
-			makeAjaxCall(call, userId, apiToken, rlCurrent)
+			makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 		}
 	}
 
@@ -1549,7 +1549,7 @@ function fetchData() {
 				call.push({requestType: 'GET', urlTo: serverUrl + serverPathMemberProfilePart + '/' + obj.id, newData: '', fnSuccess: fetchMemberSuccess, fnFailure: fetchMemberFail, statusText: 'Asking for Member Data ... (This can take a while - ' + (index + 1) + ' of ' + listToFetch.length + ')'})
 
 			});
-			makeAjaxCall(call, userId, apiToken, rlCurrent)		
+			makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)		
 		}
 	}
 		
@@ -1634,7 +1634,7 @@ function postToggleLeaderOnlyChallenge(newValue) {
 
 
 		call.push({requestType: 'PUT', urlTo: urlToPost, newData: JSON.stringify(newData), fnSuccess: postToggleLeaderOnlyChallengeSuccess, fnFailure: postToggleLeaderOnlyChallengeFailure, statusText: 'Toggling Leader Only Challenges'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 		
 	}
 		
@@ -1723,7 +1723,7 @@ function postChangeLeader(rowData, uuidIndex, nameIndex) {
 		if (debugShowObject) console.log(urlToPost);
 
 		call.push({requestType: 'PUT', urlTo: urlToPost, newData: JSON.stringify(newData), fnSuccess: postChangeLeaderSuccess, fnFailure: postChangeLeaderFailure, statusText: 'Changing Leaders'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 		
 	}
 		
@@ -1852,7 +1852,7 @@ function postRemoveUser(rowData, uuidIndex, nameIndex) {
 		if (debugShowObject) console.log(urlToPost);
 
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: '', fnSuccess: postRemoveUserSuccess, fnFailure: postRemoveUserFailure, statusText: 'Removing user ' + obj[actionIndex]})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 		
 	}
 		
@@ -1900,7 +1900,7 @@ function postRemoveUser(rowData, uuidIndex, nameIndex) {
 		
 		var call = []
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: JSON.stringify(newData), fnSuccess: postRemoveUserSendPMSuccess, fnFailure: postRemoveUserSendPMFailure, statusText: 'Sending removal message to user ' + obj[uuidIndex]})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 		
 	}
 	
@@ -2032,7 +2032,7 @@ function postMessageUser(rowData, uuidIndex, nameIndex) {
 		
 		var call = []
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: JSON.stringify(newData), fnSuccess: postMessageUserSuccess, fnFailure: postMessageUserFailure, statusText: 'Messaging: ' + obj[uuidIndex]})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 		
 	}
 		
@@ -2121,7 +2121,7 @@ function postGiveCard(cardType, rowData, uuidIndex, nameIndex) {
 		
 		var call = []
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: '', fnSuccess: postGiveCardSuccess, fnFailure: postGiveCardFailure, statusText: 'Giving Card to: ' + obj[uuidIndex]})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)
 
 	}
 		
@@ -2203,7 +2203,7 @@ function postTransformMember(transformItem, rowData, uuidIndex, nameIndex) {
 		
 		var call = []
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: '', fnSuccess: postTransformMemberSuccess, fnFailure: postTransformMemberFailure, statusText: 'Transforming ' + obj[actionIndex]})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)		
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)		
 		
 	}
 		
@@ -2283,7 +2283,7 @@ function postChat() {
 		
 		var call = []
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: JSON.stringify(newData), fnSuccess: postChatSuccess, fnFailure: postChatFailure, statusText: 'Posting chat message'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)		
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)		
 		
 	}
 		
@@ -2335,7 +2335,7 @@ function postQuestAccept() {
 
 		var call = []
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: '', fnSuccess: postQuestAcceptSuccess, fnFailure: postQuestAcceptFailure, statusText: 'Posting accepting quest'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)		
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)		
 	}
 		
 
@@ -2387,7 +2387,7 @@ function postQuestReject() {
 		
 		var call = []
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: '', fnSuccess: postQuestRejectSuccess, fnFailure: postQuestRejectFailure, statusText: 'Rejecting Quest'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)		
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)		
 		
 	}
 		
@@ -2440,7 +2440,7 @@ function postQuestStart() {
 		
 		var call = []
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: '', fnSuccess: postQuestStartSuccess, fnFailure: postQuestStartFailure, statusText: 'Force Starting Quest'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)		
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)		
 		
 	}
 		
@@ -2491,7 +2491,7 @@ function postQuestLeave() {
 		
 		var call = []
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: '', fnSuccess: postQuestLeaveSuccess, fnFailure: postQuestLeaveFailure, statusText: 'Leaving Quest'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)	
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)	
 		
 	}
 		
@@ -2544,7 +2544,7 @@ function postQuestAbort() {
 		
 		var call = []
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: '', fnSuccess: postQuestAbortSuccess, fnFailure: postQuestAbortFailure, statusText: 'Aborting Quest'})
-		makeAjaxCall(call, userId, apiToken, rlCurrent)	
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)	
 	}
 		
 
@@ -2600,7 +2600,7 @@ function postClearNotification(notifcationList) {
 		
 		var call = []
 		call.push({requestType: 'POST', urlTo: urlToPost, newData: '', fnSuccess: postClearNotificationSuccess, fnFailure: postClearNotificationFail, statusText: 'Clear Notifications for ' + notifcationList[obj].name })
-		makeAjaxCall(call, userId, apiToken, rlCurrent)		
+		makeAjaxCall(call, userId, apiToken, clientId, rlCurrent)		
 
 			
 	}
